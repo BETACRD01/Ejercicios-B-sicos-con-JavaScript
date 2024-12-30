@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JavaScript</title>
+</head>
+<body>
+    <!-- Ejercicio 1: Contenedor con frases aleatorias -->
+    <h2>Ejercicio 1: Frases aleatorias</h2>
+    <div id="contenedor">Haz clic en el botón para ver una frase</div>
+    <button id="boton">Mostrar frase</button>
+
+    <!-- Ejercicio 2: Agregar tareas a una lista -->
+    <h2>Ejercicio 2: Agregar tareas</h2>
+    <input type="text" id="inputTarea" placeholder="Escribe una tarea">
+    <button id="botonAgregar">Agregar tarea</button>
+    <ul id="listaTareas"></ul>
+
+    <!-- Ejercicio 3: Calcular total a abonar -->
+    <h2>Ejercicio 3: Total a abonar</h2>
+    <button id="botonCalcular">Calcular total</button>
+    <div id="resultado"></div>
+
+    <!-- Ejercicio 4: Determinar etapa de vida -->
+    <h2>Ejercicio 4: Determinar etapa de vida</h2>
+    <button id="botonEdad">Determinar etapa</button>
+
+    <!-- Ejercicio 5: Calcular IMC -->
+    <h2>Ejercicio 5: Índice de Masa Corporal</h2>
+    <button id="botonIMC">Calcular IMC</button>
+
+    <script>
+        // Ejercicio 1: Contenedor con frases aleatorias
+        const frases = ["La vida es bella", "Nunca es tarde para aprender", "El éxito es el resultado del esfuerzo", "Cada día es una nueva oportunidad"];
+        const boton = document.getElementById("boton");
+        const contenedor = document.getElementById("contenedor");
+
+        boton.addEventListener("click", () => {
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+            contenedor.textContent = fraseAleatoria;
+        });
+
+        // Ejercicio 2: Agregar tareas a una lista
+        const botonAgregar = document.getElementById("botonAgregar");
+        const listaTareas = document.getElementById("listaTareas");
+        const inputTarea = document.getElementById("inputTarea");
+
+        botonAgregar.addEventListener("click", () => {
+            const tarea = inputTarea.value.trim();
+            if (tarea) {
+                const li = document.createElement("li");
+                li.textContent = tarea;
+                listaTareas.appendChild(li);
+                inputTarea.value = "";
+            }
+        });
+
+        // Ejercicio 3: Calcular el total a abonar
+        const botonCalcular = document.getElementById("botonCalcular");
+        const resultado = document.getElementById("resultado");
+
+        botonCalcular.addEventListener("click", () => {
+            const precio = parseInt(prompt("Ingresa el precio del artículo:"), 10);
+            const cantidad = parseInt(prompt("Ingresa la cantidad que lleva el cliente:"), 10);
+            if (!isNaN(precio) && !isNaN(cantidad)) {
+                resultado.textContent = `Total a abonar: $${precio * cantidad}`;
+            } else {
+                resultado.textContent = "Por favor, ingresa valores válidos.";
+            }
+        });
+
+        // Ejercicio 4: Determinar etapa de vida según edad
+        const botonEdad = document.getElementById("botonEdad");
+
+        botonEdad.addEventListener("click", () => {
+            const edad = parseInt(prompt("Ingresa la edad de la persona:"), 10);
+            if (!isNaN(edad)) {
+                if (edad < 18) {
+                    alert("Es menor de edad.");
+                } else if (edad >= 18 && edad <= 64) {
+                    alert("Es adulta.");
+                } else {
+                    alert("Es anciana.");
+                }
+            } else {
+                alert("Por favor, ingresa un número válido.");
+            }
+        });
+
+        // Ejercicio 5: Calcular IMC
+        const botonIMC = document.getElementById("botonIMC");
+
+        botonIMC.addEventListener("click", () => {
+            const peso = parseFloat(prompt("Ingresa tu peso en kg:"));
+            const altura = parseFloat(prompt("Ingresa tu altura en metros:"));
+            if (!isNaN(peso) && !isNaN(altura)) {
+                const imc = peso / (altura ** 2);
+                if (imc < 18.5) {
+                    alert("Bajo de peso");
+                } else if (imc >= 18.5 && imc <= 24.9) {
+                    alert("Normal");
+                } else if (imc >= 25 && imc <= 29.9) {
+                    alert("Sobrepeso");
+                } else {
+                    alert("Obeso");
+                }
+            } else {
+                alert("Por favor, ingresa valores válidos.");
+            }
+        });
+    </script>
+</body>
+</html>
